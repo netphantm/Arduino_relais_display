@@ -1,7 +1,7 @@
 ## Relay socket with OLED display
 > ESP8266 Socket relay switch
 
-<img src="https://github.com/netphantm/Arduino/raw/master/relais_display/pics/pic-01.png" width="300" align="right" />
+<img src="https://github.com/netphantm/Arduino_relais-display/raw/master/pics/pic-01.png" width="300" align="right" />
 
 An IoT socket made with a WeMos D1 Mini Pro, an inductive touch sensor and a .96" OLED display. I made it, so I don't have to go in the evening all the way over to the nightstand to switch the light on, and go back to the desk and switch the light off. I know, I'm lazy, but it's a 15m annoying trip every evening :). The scope here was to do these projects on my own, more or less from scratch, not just take an already built (big) home automation system and buy stuff that connects to it.
 
@@ -62,15 +62,15 @@ To switch it on or off from my mobile, I use an app called 'HTTP Shortcuts'. You
 
 ### Images
 
-<img src="https://github.com/netphantm/Arduino/raw/master/relais_display/pics/pic-01.png" alt="pic-01" width="440px" align="left"> 
-<img src="https://github.com/netphantm/Arduino/raw/master/relais_display/pics/pic-02.png" alt="pic-02" width="400px" align="right">
+<img src="https://github.com/netphantm/Arduino_relais-display/raw/master/pics/pic-01.png" alt="pic-01" width="440px" align="left"> 
+<img src="https://github.com/netphantm/Arduino_relais-display/raw/master/pics/pic-02.png" alt="pic-02" width="400px" align="right">
 
-<img src="https://github.com/netphantm/Arduino/raw/master/relais_display/pics/pic-03.png" alt="pic-03" width="400px" align="right">
+<img src="https://github.com/netphantm/Arduino_relais-display/raw/master/pics/pic-03.png" alt="pic-03" width="400px" align="right">
 
-<img src="https://github.com/netphantm/Arduino/raw/master/relais_display/pics/pic-04.png" alt="pic-04" width="400px" align="right">
+<img src="https://github.com/netphantm/Arduino_relais-display/raw/master/pics/pic-04.png" alt="pic-04" width="400px" align="right">
 
 
-<img src="https://github.com/netphantm/Arduino/raw/master/relais_display/pics/screen-01.png" alt="screen-01" align="center">
+<img src="https://github.com/netphantm/Arduino_relais-display/raw/master/pics/screen-01.png" alt="screen-01" align="center">
 
 ---
 
