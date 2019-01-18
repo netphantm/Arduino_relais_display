@@ -81,5 +81,5 @@ To switch it on or off from my mobile, I use an app called 'HTTP Shortcuts'. You
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
 - Copyright 2018 © netphantm.
 
-[↑ goto top](#DS18B20-thermostat)
+[↑ goto top](#Relay-socket-with-OLED-display)
 
