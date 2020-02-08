@@ -6,9 +6,9 @@ String html_1 = R"=====(
     <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
     <meta charset='utf-8'>
     <style>
-      body {font-size:140%; } 
-      #main {display: table; margin: auto;  padding: 0 10px 0 10px; } 
-      h2 {text-align:center; } 
+      body {font-size:140%; }
+      #main {display: table; margin: auto;  padding: 0 10px 0 10px; }
+      h2 {text-align:center; }
       #RELAIS_button {
         background: #3D94F6;
         border-radius: 10px;
@@ -54,17 +54,17 @@ String html_1 = R"=====(
         color: darkgray;
       }
     </style>
-     
+
     <script>
       function switchRELAIS() {
          var button_text = document.getElementById("RELAIS_button").value;
-         ajaxLoad('TOGGLE'); 
+         ajaxLoad('TOGGLE');
       }
-    
+
       var ajaxRequest = null;
       if (window.XMLHttpRequest)  { ajaxRequest =new XMLHttpRequest(); }
       else                        { ajaxRequest =new ActiveXObject("Microsoft.XMLHTTP"); }
-      
+
       function ajaxLoad(ajaxURL) {
         if(!ajaxRequest){ alert("AJAX is not supported."); return; }
         ajaxRequest.open("GET",ajaxURL,true);
