@@ -9,12 +9,12 @@ String html_1 = R"=====(
       body {font-size:140%; }
       #main {display: table; margin: auto;  padding: 0 10px 0 10px; }
       h2 {text-align:center; }
-      #RELAIS_button {
+      #button {
         background: #3D94F6;
         border-radius: 10px;
         color: #FFFFFF;
         font-family: Open Sans;
-        width: 170px;
+        width: 140px;
         font-size: 20px;
         padding: 15px;
         box-shadow: 2px 2px 5px black;
@@ -56,9 +56,17 @@ String html_1 = R"=====(
     </style>
 
     <script>
-      function switchRELAIS() {
-         var button_text = document.getElementById("RELAIS_button").value;
+      function RELAIStoggle() {
+         var button_text = document.getElementById("button").value;
          ajaxLoad('TOGGLE');
+      }
+      function RELAISon() {
+         var button_text = document.getElementById("button").value;
+         ajaxLoad('ON');
+      }
+      function RELAISoff() {
+         var button_text = document.getElementById("button").value;
+         ajaxLoad('OFF');
       }
 
       var ajaxRequest = null;
@@ -71,8 +79,8 @@ String html_1 = R"=====(
         ajaxRequest.onreadystatechange = function() {
           if(ajaxRequest.readyState == 4 && ajaxRequest.status==200) {
             var ajaxResult = ajaxRequest.responseText;
-            if      ( ajaxResult == "Relais is on" )   { document.getElementById("RELAIS_button").value = "Turn off"; }
-            else if ( ajaxResult == "Relais is off" )  { document.getElementById("RELAIS_button").value = "Turn on"; }
+            if      ( ajaxResult == "ON" )   { document.getElementById("button").value = "Turn off"; }
+            else if ( ajaxResult == "OFF" )  { document.getElementById("button").value = "Turn on"; }
             document.getElementById("reply").innerHTML = ajaxResult;
           }
         }
@@ -80,14 +88,20 @@ String html_1 = R"=====(
       }
     </script>
     <link rel="shortcut icon" href="https://www.hugo.ro/favicon.ico" />
-    <title>Ndnd Power Control</title>
+    <title>Drrr Power Control</title>
   </head>
   <body>
     <div id='main' align='center'>
-      <h2>ESP8266 Power Control</h2>
+      <h2>Drrr Power Control</h2>
       <div align="center">
-        <p id = "reply">Reply appears here</p>
-        <input type="button" id = "RELAIS_button" onclick="switchRELAIS()" value="Turn on" /> 
+        <p id = "reply">Status: Relais is 
+)=====";
+
+String html_2 = R"=====(
+        </p>
+        <p><input type="button" id = "button" onclick="RELAIStoggle()" value="Toggle" /></p>
+        <p><input type="button" id = "button" onclick="RELAISon()" value="Turn on" /></p>
+        <p><input type="button" id = "button" onclick="RELAISoff()" value="Turn off" /></p>
       </div>
     </div>
     <div class="tooltip"><a href="mailto:mail@hugo.ro?subject=Ndnd Power Control">©2018</a>
@@ -111,6 +125,7 @@ SSD1306Wire  display(0x3c, D6, D5);
 
 WiFiServer server(80);
 String request = "";
+String hostname = "Drrr";
 int disp = 1;
 long mins = (millis() / 60000);
 long minsOld = mins;
@@ -179,13 +194,14 @@ void setup() {
     display.init();
     display.setTextAlignment(TEXT_ALIGN_LEFT);
     display.setFont(ArialMT_Plain_10);
-    display.drawString(0,  0, "Connected to WiFi");
-    display.drawString(0, 10, "WiFi AP SSID: " + WiFi_Name);
+    display.drawString(0,  0, hostname + " connected to");
+    display.drawString(0, 10, "WiFi: " + WiFi_Name);
     display.drawString(0, 20, "LAN IP: " + String("") + buf);
     display.drawString(0, 30, "WAN IP: " + payload);
     display.display();
   }
   http.end();
+
   delay(50);
 }
 
@@ -232,23 +248,39 @@ void loop() {
   if (!client)  {  return;  }
   request = client.readStringUntil('\r'); // Read the first line of the request
   Serial.print("request: "); Serial.println(request); 
-  if (request.indexOf("TOGGLE") > 0) {
+  if (request.indexOf("ON") > 0) {
+    digitalWrite(RELAIS_PIN, HIGH);
+    client.print(header);
+    client.print("Status: Relais is ON");
+    Serial.println("Switched Relais ON");
+  } else if (request.indexOf("OFF") > 0) {
+      digitalWrite(RELAIS_PIN, LOW);
+      client.print(header);
+      client.print("Status: Relais is OFF");
+      Serial.println("Switched Relais OFF");
+  } else if (request.indexOf("TOGGLE") > 0) {
     int RELAIS_Pin = digitalRead(RELAIS_PIN);
     if (RELAIS_Pin == 0) {
       digitalWrite(RELAIS_PIN, HIGH);
       client.print(header);
-      client.print("Relais is on");
+      client.print("Status: Relais is ON");
       Serial.println("Switched Relais ON");
     } else if (RELAIS_Pin == 1) {
       digitalWrite(RELAIS_PIN, LOW);
       client.print(header);
-      client.print("Relais is off");
+      client.print("Status: Relais is OFF");
       Serial.println("Switched Relais OFF");
     }
   } else {
     client.flush();
     client.print(header);
     client.print(html_1);
+    if (RELAIS_Pin == 0) {
+      client.print("OFF");
+    } else {
+      client.print("ON");
+    }
+    client.print(html_2);
     delay(50);
   }
 }
