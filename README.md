@@ -69,9 +69,6 @@ To switch it on or off from my mobile, I use an app called 'HTTP Shortcuts'. You
 
 <img src="https://github.com/netphantm/Arduino_relais-display/raw/master/pics/pic-04.png" alt="pic-04" width="400px" align="right">
 
-
-<img src="https://github.com/netphantm/Arduino_relais-display/raw/master/pics/screen-01.png" alt="screen-01" align="center">
-
 ---
 
 ### License
