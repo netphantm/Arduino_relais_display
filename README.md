@@ -73,6 +73,8 @@ To switch it on or off from my mobile, I use an app called 'HTTP Shortcuts'. You
 
 ---
 
+---
+
 ### License
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
